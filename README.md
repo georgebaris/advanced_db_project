@@ -22,6 +22,7 @@
   2. spark-submit lapd_dataframe.py
   3. spark-submit geo_dataframe.py
   4. spark-submit income_dataframe.py
+
 Τώρα μπορεί να εκτελεστεί οποιοδήποτε query με την εντολή: spark-submit "FILENAME"
    
   

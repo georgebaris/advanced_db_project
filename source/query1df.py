@@ -3,9 +3,7 @@ from pyspark.sql.functions import year, month, col, count, rank
 from pyspark.sql.window import Window
 import time
 
-# Start timing the query
 spark = SparkSession.builder.appName("Q1df").getOrCreate()
-
 
 # Read the DataFrame from the Parquet file
 df_main = spark.read.parquet("hdfs:///user/user/crime_data.parquet")
@@ -22,7 +20,6 @@ crime_df = df_main.withColumn('Year', year('DATE OCC')).withColumn('Month', mont
 # Count crimes per year and month
 crime_counts = crime_df.groupBy('Year', 'Month').agg(count('*').alias('Crime_Total'))
 
-# Set up ranking within each year by crime count
 windowSpec = Window.partitionBy('Year').orderBy(col('Crime_Total').desc())
 crime_counts = crime_counts.withColumn('Rank', rank().over(windowSpec))
 

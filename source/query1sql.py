@@ -3,14 +3,14 @@ from pyspark.sql.functions import year, month, col, count, rank
 from pyspark.sql.window import Window
 import time
 
-# Start timing the query
+
 spark = SparkSession.builder.appName("Q1sql").getOrCreate()
 
 # Read the DataFrame from the Parquet file
 df_main = spark.read.parquet("hdfs:///user/user/crime_data.parquet")
 
 
-# Assuming df_main is your DataFrame
+
 df_main.createOrReplaceTempView("crime_data")
 query = """
 WITH RankedCrimes AS (

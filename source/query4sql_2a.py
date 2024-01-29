@@ -1,12 +1,12 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import year, month, col, count, rank, row_number, min , broadcast
-from pyspark.sql.window import Window
-from pyspark.sql.functions import udf
-from pyspark.sql.functions import avg, count, round, desc, year, sum, mean
+from pyspark.sql.functions import round, desc, sum, mean, udf
 from pyspark.sql.types import FloatType
 import time
 from math import radians, sin, cos, sqrt, atan2
-from geopy.distance import geodesic
+
+#comment this out if you cant register udf on your system
+from udfs import get_distance
 
 spark = SparkSession.builder.appName("Q4sql_2a").getOrCreate()
 
@@ -21,9 +21,8 @@ df_main.createOrReplaceTempView("df_main")
 lapd.createOrReplaceTempView("lapd")
 
 
-
-
-@udf(FloatType())
+# uncomment this if you want to use the udf and cant register it on your system
+'''@udf(FloatType())
 def get_distance(lat1, lon1, lat2, lon2):
     lat1, lon1, lat2, lon2 = map(radians, [float(lat1), float(lon1), float(lat2), float(lon2)])
     dlat = lat2 - lat1
@@ -35,7 +34,7 @@ def get_distance(lat1, lon1, lat2, lon2):
     return distance
 
 spark.udf.register("get_distance", get_distance)
-
+'''
 
 start_time42a = time.time()
 

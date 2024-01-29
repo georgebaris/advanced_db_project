@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import year, month, col, count, rank
-from pyspark.sql.window import Window
 import time
 
 spark = SparkSession.builder.appName("Q2sql").getOrCreate()

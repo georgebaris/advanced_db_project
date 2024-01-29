@@ -9,7 +9,6 @@ spark = SparkSession.builder.appName("Q1df").getOrCreate()
 df_main = spark.read.parquet("hdfs:///user/user/crime_data.parquet")
 
 
-# create view
 df_main.createOrReplaceTempView("df_main")
 
 start_time = time.time()

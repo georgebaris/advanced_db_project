@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import year, month, col, count, rank, regexp_replace, regexp_extract, udf
-from pyspark.sql.window import Window
 from pyspark.sql.types import StringType
 import time
 

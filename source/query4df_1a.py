@@ -1,12 +1,12 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import year, month, col, count, rank, row_number, min , broadcast
-from pyspark.sql.window import Window
-from pyspark.sql.functions import udf
-from pyspark.sql.functions import avg, count, round, desc, year, sum, mean
+from pyspark.sql.functions import avg, round, desc, sum, mean, udf
 from pyspark.sql.types import FloatType
 import time
 from math import radians, sin, cos, sqrt, atan2
-from geopy.distance import geodesic
+
+#comment this out if you cant register udf on your system
+from udfs import get_distance
 
 spark = SparkSession.builder.appName("Q4df_1a").getOrCreate()
 
@@ -22,7 +22,8 @@ lapd.createOrReplaceTempView("lapd")
 
 
 df_main = df_main.filter((col("LAT") != 0.0) )
-@udf(FloatType())
+#uncomment to use udf
+'''@udf(FloatType())
 def get_distance(lat1, lon1, lat2, lon2):
 
     lat1, lon1, lat2, lon2 = map(radians, [float(lat1), float(lon1), float(lat2), float(lon2)])
@@ -33,7 +34,7 @@ def get_distance(lat1, lon1, lat2, lon2):
     radius = 6371.0
     distance = radius * c
     return distance
-
+'''
 
 
 start_time41a = time.time()
@@ -55,7 +56,7 @@ crimes_firearms_lapd = crimes_firearms_lapd.withColumn("DISTANCE", get_distance(
 q4_1a = crimes_firearms_lapd.groupBy(year(crimes_firearms_lapd["DATE OCC"]).alias("Year")) \
     .agg(round(mean("DISTANCE"), 3).alias("average distance in km"), count("*").alias("Count")) \
     .orderBy("Year", ascending=True)
-q4_1a.show(14)
+q4_1a.show(q4_1a.count())
 end_time41a = time.time()
 
 

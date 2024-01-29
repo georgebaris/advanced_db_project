@@ -1,9 +1,9 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import year, month, col, count, rank, regexp_replace, regexp_extract, udf
-from pyspark.sql.window import Window
 from pyspark.sql.types import StringType , DoubleType
 import time
-
+#comment this out if you can't register udfs on your system
+from udfs import map_descent
 spark = SparkSession.builder.appName("Q3df").getOrCreate()
 
 
@@ -17,7 +17,8 @@ geodf.createOrReplaceTempView("geodf")
 incdf15.createOrReplaceTempView("incdf15")
 
 
-
+#uncomment this if you can't register udfs on your system
+'''
 ## Name matching with descent code chars 
 descent_mapping = {
     'A': 'Asian',
@@ -47,7 +48,7 @@ descent_mapping = {
 def map_descent(code):
     return descent_mapping.get(code, 'Unknown')
 
-map_descent_udf = udf(map_descent, StringType())
+map_descent_udf = udf(map_descent, StringType())'''
 
 
 

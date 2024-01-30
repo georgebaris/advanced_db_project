@@ -1,8 +1,9 @@
 \documentclass{article}
 
 \usepackage{graphicx} % For including graphics
+\usepackage{amsmath} % For mathematical symbols and equations
 \usepackage{fancyhdr}
-\usepackage{hyperref} % hyperlinks
+\usepackage{hyperref} % For hyperlinks
 \usepackage{listings} % For including code
 \usepackage{xcolor}   % For colored text and backgrounds
 \usepackage[utf8]{inputenc}
@@ -45,7 +46,7 @@
 
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\centering\footnotesize\selectlanguage{greek}Προχωρημένα Θέματα Βάσεων Δεδομένων - Εξαμηνιαία Εργασία - Ιανουάριος 2024}
+\fancyhead[L]{\selectlanguage{greek}Προχωρημένα Θέματα Βάσεων Δεδομένων - Εξαμηνιαία Εργασία - Ιαν. 2024}
 \fancyfoot[C]{\thepage}
 \fancypagestyle{plain}{
   \fancyhf{}
@@ -55,7 +56,6 @@
 
 
 \begin{document}
-
 
 % Cover page
 \begin{titlepage}
@@ -78,22 +78,19 @@
 \end{titlepage}
 
 
-\tableofcontents
 
-\newpage
 
-\selectlanguage{greek}
-\section{Εισαγωγή}
-Στην εξαμηνιαία εργασία του μαθήματος \textit{Προχωρημένα Θέματα Βάσεων Δεδομένων} κληθήκαμε να εργασθούμε στο \selectlanguage{english}Spark/Hadoop Framework \selectlanguage{greek} και να φέρουμε εις πέρας ζητούμενα που αφορούσαν την τροποποίηση και διαχείριση μεγάλου όγκου δεδομένων από το \selectlanguage{english} {dataset: Los Angeles Crime Data}\footnote{https://catalog.data.gov/dataset/crime-data-from-2010-to-2019}\footnote{https://catalog.data.gov/dataset/crime-data-from-2020-to-present}, \selectlanguage{greek} με την βοήθεια δευτερευόντων \selectlanguage{english} datasets:
+\section*{Εισαγωγή}
+Στην εξαμηνιαία εργασία του μαθήματος \textit{Προχωρημένα Θέματα Βάσεων Δεδομένων} κληθήκαμε να εργασθούμε στο \selectlanguage{english}Spark/Hadoop Framework \selectlanguage{greek} και να φέρουμε εις πέρας ζητούμενα που αφορούσαν την τροποποίηση και διαχείρηση μεγάλου όγκου δεδομένων από το \selectlanguage{english} {dataset: Los Angeles Crime Data}\footnote{https://catalog.data.gov/dataset/crime-data-from-2010-to-2019}\footnote{https://catalog.data.gov/dataset/crime-data-from-2020-to-present}, \selectlanguage{greek} με την βοήθεια δευτερευόντων \selectlanguage{english} datasets:
 \begin{itemize}
     \item   LA Police Stations\footnote{https://geohub.lacity.org/datasets/lahub::lapd-police-stations/explore}
     \item   Median Household Income by Zip Code (Los Angeles County) 2015 \& Reverse Geocoding\footnote{http://www.dblab.ece.ntua.gr/files/classes/data.tar.gz} 
 \end{itemize}
 
 \selectlanguage{greek}
-\section{Εγκατάσταση \& Προ-επεξεργασία Δεδομένων}
+\section*{Εισαγωγικά Ζητούμενα - Εγκατάσταση \& Προεπεξεργασία Δεδομένων}
 \label{sec:introductory_z}
-\subsection{Ζητούμενο 1}
+\subsection*{Ζητούμενο 1}
 \label{subsec:Z1}
 Η εργασία υλοποιήθηκε με την χρήση δύο εικονικών μηχανών από το\\ \texttt{\selectlanguage{english} public cloud ~okeanos-knossos } \selectlanguage{greek} με τα εξής χαρακτηριστικά:
 \selectlanguage{english}
@@ -104,7 +101,7 @@
     \item   30 GB disk capacity
 \end{enumerate}
 \selectlanguage{greek}
-Έγινε αναβάθμιση στο λειτουργικό σύστημα των \textbf{\selectlanguage{english}Virtual Machine} ώστε να τρέχει στην πιο πρόσφατη έκδοση \texttt{\selectlanguage{english}Ubuntu 22.04.3 LTS}. Η εγκατάσταση του \texttt{\selectlanguage{english}Apache Spark} έγινε με βάσει του οδηγού που δόθηκε στο εργαστήριο. Το περιβάλλον εργασίας είναι πλήρως κατανεμημένο μεταξύ των δύο κόμβων \texttt{\selectlanguage{english}"okeanos-master"} και \texttt{\selectlanguage{english}"okeanos-worker"}. Το σύστημά μας έχει \texttt{\selectlanguage{english}public ip : 83.212.73.135} και οι \texttt{\selectlanguage{english}web} εφαρμογές λειτουργούν στις ακόλουθες διευθύνσεις :
+Έγινε αναβάθμιση στo λειτουργικό σύστημα των \textbf{\selectlanguage{english}Virtual Machine} ώστε να τρέχει στην πιο πρόσφατη έκδοση \texttt{\selectlanguage{english}Ubuntu 22.04.3 LTS}. Η εγκατάσταση του \texttt{\selectlanguage{english}Apache Spark} έγινε με βάσει του οδηγού που δόθηκε στο εργαστήριο. Το περιβάλλον εργασίας είναι πλήρως κατανεμημένο μεταξύ των δύο κόμβων \texttt{\selectlanguage{english}"okeanos-master"} και \texttt{\selectlanguage{english}"okeanos-worker"}. Το σύστημά μας έχει \texttt{\selectlanguage{english}public ip : 83.212.73.135} και οι \texttt{\selectlanguage{english}web} εφαρμογές λειτουργούν στις ακόλουθες διευθύνσεις :
 \selectlanguage{english}
 \begin{itemize}
     \item   Dfs: http://83.212.73.135:9870
@@ -113,8 +110,7 @@
 
 \end{itemize}
 \selectlanguage{greek}
-Όλοι οι κώδικες μπορούν να βρεθούν στο \textbf{\selectlanguage{english}Github}\footnote{\selectlanguage{english}\href{https://github.com/georgebaris/advanced_db_project.git}{https://github.com/georgebaris/advanced\_db\_project.git}} \selectlanguage{greek}αποθετήριο.
-
+Όλοι οι κώδικες μπορούν να βρεθούν στο \textbf{\selectlanguage{english} Github}\footnote{\selectlanguage{english} https://github.com/georgebaris/advanced\_db\_project.git} αποθετήριο. 
 
 
 Η εκτέλεση κάθε \textbf{\selectlanguage{english}query} γίνεται με την εντολή:
@@ -123,7 +119,7 @@
 \texttt{\selectlanguage{english}spark-submit <filename.py>}
 \end{center}
 
-\subsection{Ζητούμενο 2}
+\subsection*{Ζητούμενο 2}
 \label{subsec:Z2}
 \selectlanguage{greek}
 Το βασικό \selectlanguage{english} \textbf{DataFrame} \selectlanguage{greek} παράγεται στο αρχείο \selectlanguage{english} \texttt{create\_dataframe.py}.\\
@@ -137,7 +133,7 @@
     \item   LON:       double
 \end{itemize}
 \selectlanguage{greek}
-Επίσης παρατηρήσαμε ότι στο αρχικό \selectlanguage{english}dataset \selectlanguage{greek} υπάρχουν διπλότυπα (\selectlanguage{english} duplicates) \selectlanguage{greek} γραμμών, τα οποία και αφαιρέσαμε εξ αρχής καθώς δεν είναι χρήσιμα και περίσσιος όγκος δεδομένων. Κατά την εκτέλεση του αρχείου βλέπουμε να τυπώνεται ο τύπος δεδομένων κάθε στήλης καθώς και ο συνολικός αριθμός γραμμών.
+Επίσης παρατηρήσαμε ότι στο αρχικό \selectlanguage{english}dataset \selectlanguage{greek} υπάρχουν διπλότυπα (\selectlanguage{english} duplicates) \selectlanguage{greek} γραμμών, τα οποία και αφαιρέσαμε εξ αρχής καθώς δεν είναι χρήσιμα και περίσσειος όγκος δεδομένων. Κατά την εκτέλεση του αρχείου βλέπουμε να τυπώνεται ο τύπος δεδομένων κάθε στήλης καθώς και ο συνολικός αριθμός γραμμών.
 
 \selectlanguage{english}
 \begin{table}[h]
@@ -200,20 +196,19 @@ LON                 & double        & true              \\ \hline
     \label{fig:df20rowsB}
 \end{figure}
 
-\selectlanguage{greek}
-\section{Κύρια Ερωτήματα}
+\selectlanguage{greek} 
+\section*{Κύρια Ζητούμενα}
 \label{sec:main_z}
-\selectlanguage{greek}
 Για την υλοποίηση των \selectlanguage{english} Queries \selectlanguage{greek} κληθήκαμε να τα υλοποιήσουμε σε \selectlanguage{english} DataFrame, SQL APIs \selectlanguage{greek} και για το \selectlanguage{english} Query 2 \selectlanguage{greek} και σε \selectlanguage{english} RDD API \selectlanguage{greek} και να συγκρίνουμε τους χρόνους εκτέλεσης για κάθε υλοποίηση.\\
-Για κάθε \selectlanguage{english} query \selectlanguage{greek} για να μετρήσουμε την διάρκεια της εκτέλεσης του χρησιμοποιήσαμε την βιβλιοθήκη \selectlanguage{english} \texttt{time} \selectlanguage{greek} της \selectlanguage{english} \texttt{Python} \selectlanguage{greek} και μέσω αυτής προκύπτουν τα αποτελέσματα που παρουσιάζονται στους πίνακες για κάθε ερώτημα. 
+Για κάθε \selectlanguage{english} query \selectlanguage{greek} για να χρονομετρήσουμε την διάρκεια της εκτέλεσης του χρησιμοποιήσαμε την βιβλιοθήκη \selectlanguage{english} \texttt{time} \selectlanguage{greek} της \selectlanguage{english} \texttt{Python} \selectlanguage{greek} και μέσω αυτής προκύπτουν τα αποτελέσματα που παρουσιάζονται στους πίνακες για κάθε ερώτημα. 
 
 
 
-\subsection{Ζητούμενο 3}
+\subsection*{Ζητούμενο 3}
 \label{subsec:Z3}
 
 
-Κληθήκαμε να υλοποιήσουμε το \selectlanguage{english} \texttt{Query 1} \selectlanguage{greek} το οποίο ζητά να βρεθούν ανά έτος οι τρεις (3) μήνες με υψηλότερη καταγραφή εγκλημάτων και να παρουσιαστούν τα αποτελέσματα ανά έτος, με φθίνουσα κατάταξη ως προς τον αριθμό των καταγραφών. Για την υλοποίηση δημιουργούμε δύο \selectlanguage{english} derived columns, Year \& Month \selectlanguage{greek} που προκύπτουν από το \selectlanguage{english} DATE OCC, \selectlanguage{greek} μετράμε για κάθε μήνα και χρόνο τις καταγραφές και κρατάμε τους 3 υψηλότερους μήνες. Η εκτέλεση του \selectlanguage{english} Query \selectlanguage{greek} έγινε όπως υποδεικνύεται με 4\selectlanguage{english} Spark executors.\\
+Κληθήκαμε να υλοποιήσουμε το \selectlanguage{english} \texttt{Query 1} \selectlanguage{greek} το οποίο ζητά να βρεθούν ανά έτος οι τρεις (3) μήνες με υψηλότερη καταγραφή εγκλημάτων και να παρουσιαστούν τα αποτελέσματα ανά έτος, με φθίνουσα κατάταξη ως προς τον αριθμό των καταγραφών. Για την υλοποίηση δηιουργούμε δύο \selectlanguage{english} derived columns, Year \& Month \selectlanguage{greek} που προκύπτουν από το \selectlanguage{english} DATE OCC, \selectlanguage{greek} μετράμε για κάθε μήνα και χρόνο τις καταγραφές και κρατάμε τους 3 υψηλότερους μήνες. Η εκτέλεση του \selectlanguage{english} Query \selectlanguage{greek} έγινε όπως υποδεικνύεται με 4\selectlanguage{english} Spark executors.\\
 \selectlanguage{greek}
 \\
 
@@ -268,18 +263,18 @@ SQL             & 11.4259                           \\ \hline
 \end{table}
 
 \selectlanguage{greek}
-Από τους χρόνους δεν φαίνεται ουσιαστική διαφορά στην εκτέλεση. Αυτό οφείλεται ότι για την υλοποίηση και στις δύο περιπτώσεις των διαφορετικών \selectlanguage{english} API \selectlanguage{greek} η διαχείριση των δεδομένων στα πλαίσια των \selectlanguage{english}queries \selectlanguage{greek}είναι βελτιστοποιημένη από το ίδιο το \selectlanguage{english}framework.
+Από τους χρόνους δεν φαίνεται ουσιαστική διαφορά στην εκτέλεση. Αυτό οφείλεται ότι για την υλοποίηση και στις δύο πέριπτώσηεις των διαφορετικών \selectlanguage{english} API \selectlanguage{greek} η διαχειρίση των δεδομένων στα πλαίσια των \selectlanguage{english}queries \selectlanguage{greek}είναι βελτιστοποιημένη από το ίδιο το \selectlanguage{english}framework.
 
 
 \selectlanguage{greek}
-\subsection{Ζητούμενο 4}
+\subsection*{Ζητούμενο 4}
 \label{subsec:Z4}
 
-Η υλοποίηση του \selectlanguage{english} Query 2 \selectlanguage{greek} έγινε με την χρήση 3 διαφορετικών μεθόδων. Κληθήκαμε να ταξινομήσουμε τα τμήματα της ημέρας, ανάλογα με τις καταγραφές εγκλημάτων που έλαβαν χώρα στο δρόμο και να τα ταξινομήσουμε σε φθίνουσα σειρά των καταγραφών του κάθε τμήματος. Για την υλοποίηση χρησιμοποιήσαμε δική μας συνάρτηση \selectlanguage{english}(UDF - User Defined Function) \selectlanguage{greek} που κατηγοριοποιεί το \selectlanguage{english}
+Η υλοποίηση του \selectlanguage{english} Query 2 \selectlanguage{greek} έγινε με την χρήση 3 διαφορετικών μεθόδων. Κληθήκαμε να ταξινομήσουμε τα τμήματα της ημέρας, ανάλογα με τις καταγραφές εγκλημάτων που έλαβαν χώρα στο δρόμο και να τα ταξινομήσουμε σε φθίνυσα σειρά των καταγραφών του κάθε τμήματος. Για την υλοποίηση χρησιμοποιήσαμε δική μας συνάρτηση \selectlanguage{english}(UDF - User Defined Function) \selectlanguage{greek} που κατηγοριοποιεί το \selectlanguage{english}
 segment \selectlanguage{greek} από τα πρώτα 2 ψηφία του \selectlanguage{english} \texttt{"TIME OCC"} \selectlanguage{greek}. Αρχικά φιλτράρουμε μόνο τα \selectlanguage{english} logs \selectlanguage{greek} που στην στήλη \selectlanguage{english} \texttt{"Premis Desc"} \selectlanguage{greek} έχουν την κατηγορία \selectlanguage{english}"STREET" \selectlanguage{greek}και έπειτα προσθέτουμε νέα στήλη με όνομα \selectlanguage{english}"Day\_Segment" \selectlanguage{greek} της οποίας οι τιμές προκύπτουν από την προαναφερθείσα συνάρτηση. Τέλος, απλά παρουσιάζουμε τα αποτελέσματα ομαδοποιώντας ανά μέρος της ημέρας και κατά φθίνουσα σειρά.\\
 
 
-Οι χρόνοι για την εκτέλεση του \selectlanguage{english} Query \selectlanguage{greek}στα διαφορετικά \selectlanguage{english}API \selectlanguage{greek}φαίνεται στον Πίνακα 4. Όπως και πριν, έτσι και στο ζητούμενο αυτό εκτελέστηκε με \selectlanguage{english}4 Spark executors. 
+Οι χρόνοι για την εκτέλεση του \selectlanguage{english} Query \selectlanguage{greek}στα διαφορετικά \selectlanguage{english}API \selectlanguage{greek}φαίνεται στον Πίνακα 4. Όπως και πριν, έτσι και στο ζητούμνενο αυτό εκτελέστηκε με \selectlanguage{english}4 Spark executors. 
 
 \begin{table}[h]
 \centering
@@ -316,7 +311,7 @@ Morning   & 91830  \\ \hline
 \selectlanguage{greek}
 
 
-\subsection{Ζητούμενο 5}
+\subsection*{Ζητούμενο 5}
 \label{subsec:Z5}
 
 Στο Ζητούμενο αυτό \selectlanguage{english}\textbf{(Query 3)} \selectlanguage{greek} σκοπός ήταν για το έτος 2015, να βρούμε τις 3 περιοχές του \selectlanguage{english} Los Angeles \selectlanguage{greek} με υψηλότερο και 3 με χαμηλότερο εισόδημα και έπειτα να βρούμε την καταγωγή των θυμάτων εγκλημάτων και να τα παρουσιάσουμε αθροιστικά, με βάση τον αριθμό καταγραφών για κάθε καταγωγή, σε φθίνουσα σειρά. Η υλοποίηση έγινε ως εξής: 
@@ -352,7 +347,7 @@ Filipino             & 2                    \\ \hline
 \end{table}
 
 \selectlanguage{greek}
-Για την εκτέλεση κληθήκαμε να συγκρίνουμε τους χρόνους εκτέλεσης για 2, 3 και 4 \selectlanguage{english} Spark executors.\selectlanguage{greek} Τα αποτελέσματα φαίνονται στον πίνακα 7. Οι διαφορές στους χρόνους και η παρατήρηση ότι για λιγότερους \selectlanguage{english} executors \selectlanguage{greek} ο χρόνος είναι καλύτερος έχει ορισμένες πιθανές εξηγήσεις. Αρχικά, το αυξημένο \selectlanguage{english} overhead \selectlanguage{greek} από διαδικασίες που ανατίθενται. Έπειτα τα πολλαπλά \selectlanguage{english} joins \selectlanguage{greek} αποδίδουν μη αποδοτικούς χρόνους όταν κατανέμεται το φορτίο, μιας και είναι αποδοτικότερο κάποια από αυτά να γίνουν σειριακά.
+Για την εκτέλεση κληθήκαμε να συγκρίνουμε τους χρόνους εκτέλεσης για 2, 3 και 4 \selectlanguage{english} Spark executors.\selectlanguage{greek} Τα αποτελέσματα φαίνονται στον πίνακα 7. Οι διαφορές στους χρόνους και η παρατήρηση ότι για λιγότερους \selectlanguage{english} executors \selectlanguage{greek} ο χρόνος είναι καλύτερος έχει ορισμένες πιθανές εξηγήσεις. Αρχικά, το αυτξημένο \selectlanguage{english} overhead \selectlanguage{greek} από διαδικασίες που ανατίθεντα. Έπειτα τα πολλαπλά \selectlanguage{english} joins \selectlanguage{greek} αποδίδουν μη αποδοτικούς χρόνους όταν κατανέμεται το φορτίο, μιας και είναι αποδοτικότερο κάποια από αυτά να γίνουν σειριακά.
 \selectlanguage{english}
 \begin{table}[h]
 \centering
@@ -364,13 +359,16 @@ SQL           & 18.4258 sec & 16.4078 sec & 12.4836 sec \\ \hline
 \end{tabular}
 \caption{\selectlanguage{greek} Χρόνοι εκτέλεσης για διαφορετικό αριθμό\selectlanguage{english} executors per API - Query 3}
 \label{table:query3_execution_different_executors}
-
 \end{table}
 
+
 \selectlanguage{greek}
-\subsection{\selectlanguage{greek}Ζητούμενο 6}
+
+
+\subsection*{Ζητούμενο 6}
 \label{subsec:Z6}
-Όσον αφορά το ζητούμενο αυτό μας ανατέθηκε το τελευταίο και πιο εκτενές σε περιπτώσεις \selectlanguage{english} \textbf{Query (4)}. \selectlanguage{greek}Για τον υπολογισμό των αποστάσεων χρησιμοποιήσαμε διαφορετική υλοποίηση συνάρτησης από την προτεινόμενη. Επίσης, για την αποφυγή λάθος αποτελεσμάτων και μεγαλύτερων χρόνων εκτέλεσης, αφαιρέσαμε τα \selectlanguage{english} logs \selectlanguage{greek} με συντεταγμένες που ανήκουν στο \selectlanguage{english} Null Island\footnote{Null Island faulty LAT,LON:\selectlanguage{greek}Ένα σημαντικό μέρος των συντεταγμένων των καταγραφών φέρεται να έχει περασμένες τις "μηδενικές συντεταγμένες", και προκύπτουν αποτελέσματα χωρίς λογική συνέχεια.}.\\
+
+Όσον αφορά το ζητούμενο αυτό μας ανατέθηκε το τελευταίο και πιο εκτενές σε περιπτώσεις \selectlanguage{english} \textbf{Query (4)}. \selectlanguage{greek}Για τον υπολογισμό των αποστάσεων χρησιμοποιήσαμε διαφορετικη υλοποίση συνάρτησης από την προτεινόμενη. Επίσης, για την αποφυγή λάθος αποτελεσμάτων και μεγαλύτερων χρόνων εκτέλεσης, αφαιρέσαμε τα \selectlanguage{english} logs \selectlanguage{greek} με συντεταγμένες που ανήκουν στο \selectlanguage{english} Null Island\footnote{Null Island faulty LAT,LON:\selectlanguage{greek}Ένα σημαντικό μέρος των συντεταγμένων των καταγραφών φέρεται να έχει περασμένες τις "μηδενικές συντεταγμένες", και προκύπτουν αποτελέσματα χωρίς λογική συνέχεια.}.\\
 \selectlanguage{english}
 \begin{table}[h]
 \centering
@@ -440,10 +438,10 @@ DEVONSHIRE      & 3.987 & 18250 \\ \hline
 
 
 \selectlanguage{greek}
-Στο β' ζητούμενο του μέρους καλούμαστε να υπολογίσουμε τις καταγραφές εγκλημάτων με χρήση όπλου (οποιοσδήποτε κωδικός διάφορος του \selectlanguage{english}Null)\selectlanguage{greek} και να τα παρουσιάσουμε ανά Αστυνομικό Τμήμα, στα οποία ανατέθηκαν τα συμβάντα. Το αποτέλεσμα φαίνεται στον πίνακα 9. 
+Στο β' ζητούμενο του μέρους καλούμαστε να υπολογίσουμε τις καταγραφές εγκλημάτων με χρήση όπλου (οποιοσδήποτε κωδικός δίαφορος του \selectlanguage{english}Null)\selectlanguage{greek} και να τα παρουσιάσουμε ανά Αστυνομικό Τμήμα, στα οποία ανατέθηκαν τα συμβάντα. Το αποτέλεσμα φαίνεται στον πίνακα 9. 
 
 \clearpage
-Τα βήματα της υλοποίησης:
+Τα βήματα της υλοποίσης:
 \begin{itemize}
     \item   Φιλτράρισμα των \selectlanguage{english} non-Null \selectlanguage{greek} τιμών του πεδίου \selectlanguage{english} "Weapon Used Cd".
     \item   Join Main \& LAPD DataFrame \selectlanguage{greek} ώστε \selectlanguage{english} \texttt{"main.AREA==lapd.PREC"}.
@@ -522,7 +520,7 @@ DEVONSHIRE      & 2.844 & 9459  \\ \hline
 
 
 \selectlanguage{greek}
-Στο α' ζητούμενο η υλοποίηση είναι παρόμοια με την υλοποίηση α' του πρώτου μέρους. Για να βρούμε όμως το πλησιέστερο Αστυνομικό Τμήμα χρησιμοποιούμε \selectlanguage{english}\texttt{cross join} \selectlanguage{greek} το οποίο είναι πολύ πιο κοστοβόρο και χρονοβόρο, αλλά είναι ο πιο απλός τρόπος για να βρεθεί η ελάχιστη απόσταση μεταξύ κάθε καταγραφής εγκλήματος και αστυνομικού τμήματος. Από τις αποστάσεις κρατάμε το \selectlanguage{english}log \selectlanguage{greek} με την ελάχιστη τιμή και συνεχίζουμε την παρουσίαση του ζητήματος όπως και στο πρώτο μέρος. Αντίστοιχα πράττουμε και στο β' ερώτημα του δευτέρου μέρους με χρήση \selectlanguage{english} cross join \selectlanguage{greek} και η υπόλοιπη διαδικασία παραμένει ίδια.Τα αποτελέσματα του δεύτερου μέρους για το α' και β' ερώτημα, παρουσιάζονται στους πίνακες 10 και 11 αντίστοιχα.\\
+Στο α' ζητούμενο η υλοποίηση είναι παρόμοια με την υλοποίηση α' του πρώτου μέρους. Για να βρούμε όμως το πλησιέστερο Αστυνομικό Τμήμα χρησιμοποιούμε \selectlanguage{english}\texttt{cross join} \selectlanguage{greek} το οποίο είναι πολύ πιο κοστοβόρο και χρονοβόρο, αλλά είναι ο πιο απλός τρόπος για να βρρεθεί η ελάχιστη απόσταση μεταξύ κάθε καταγραφής εγκλήματος και αστυνομικού τμήματος. Από τις αποστάσεις κρατάμε το \selectlanguage{english}log \selectlanguage{greek} με την ελάχιστη τιμή και συνεχίζουμε την παρουσίαση του ζητήματος όπως και στο πρώτο μέρος. Αντίστοιχα πράττουμε και στο β' ερώτημα του δευτέρου μέρους με χρήση \selectlanguage{english} cross join \selectlanguage{greek} και η υπόλοιπη διαδικασία παραμένει ίδια.Τα αποτελέσματα του δεύτερου μέρους για το α' και β' ερώτημα, παρουσιάζονται στους πίνακες 10 και 11 αντίστοιχα.\\
 
 
 
@@ -545,18 +543,18 @@ SQL\_2a       & 17.1889                           \\ \hline
 DF\_2b        & 61.8993                           \\ \hline
 SQL\_2b       & 63.0198                           \\ \hline
 \end{tabular}
-\caption{\selectlanguage{greek}Χρόνοι εκτέλεσης για τις περιπτώσεις του \selectlanguage{english} Query 4}
+\caption{\selectlanguage{greek}Χρόνοι εκτέλεσης για τις περιπώσεις του \selectlanguage{english} Query 4}
 \label{table:query4_execution_times}
 \end{table}
 
 
 
 \selectlanguage{greek}
-Οι συγκρίσεις μεταξύ των χρόνων εκτέλεσης των \selectlanguage{english}Queries \selectlanguage{greek} και των παραλλαγών τους στα διαφορετικά \selectlanguage{english}APIs (4 executors) \selectlanguage{greek}φαίνονται στον πίνακα 12. Για τα ερωτήματα του πρώτου μέρους παρατηρούμε παρόμοιους χρόνους για τα δύο \selectlanguage{english} APIs \selectlanguage{greek}, ενώ για το δεύτερο μέρος το α' ερώτημα μπορούμε να δούμε ότι υπάρχει μια υπεροχή της \selectlanguage{english} SQL \selectlanguage{greek}όσον αφορά το \selectlanguage{english} efficiency \selectlanguage{greek}που χειρίζεται το \selectlanguage{english} cross join \selectlanguage{greek} και αποδίδει μικρότερο χρόνο. Για το τελευταίο ερώτημα είναι σαφής η μεγάλη διαφορά στον χρόνο εκτέλεσης σε σχέση με τα υπόλοιπα (και για τα δύο \selectlanguage{english} APIs) \selectlanguage{greek} αφού χειρίζεται \selectlanguage{english} cross join \selectlanguage{greek}και υπολογισμό τιμή για πολύ μεγαλύτερο όγκο δεδομένων. 
+Οι συγκρίσεις μεταξύ των χρόνων εκτέλεσης των \selectlanguage{english}Queries \selectlanguage{greek} και των παραλλαγών τους στα διαφορετικά \selectlanguage{english}APIs (4 executors) \selectlanguage{greek}φαίνονται στον πίνακα 12. Για τα ερωτήματα του πρώτου μέρους παρατηρούμε παρόμοιους χρόνους για τα δύο \selectlanguage{english} APIs \selectlanguage{greek}, ενώ για το δεύτερο μέρος το α' ερώτημα μπορούμε να δούμε ότι υπάρχει μια υπεροχή της \selectlanguage{english} SQL \selectlanguage{greek}όσον αφορά το \selectlanguage{english} efficiency \selectlanguage{greek}που χειρίζεται το \selectlanguage{english} cross join \selectlanguage{greek} και αποδίδει μικρότερο χρόνο. Για το τελευταίο ερώτημα είναι σαφής η μεγάλη διαφορά στον χρόνο εκτέλεσης σε σχέση με τα υπόλοια (και για τα δύο \selectlanguage{english} APIs) \selectlanguage{greek} αφού χειρίζεται \selectlanguage{english} cross join \selectlanguage{greek}και υπολογισμό τιμή για πολύ μεγαλύτερο όγκο δεδομένων. 
 
 
 \selectlanguage{greek}
-\subsection{Ζητούμενο 7}
+\subsection*{Ζητούμενο 7}
 \label{subsec:Z7}
 
 
@@ -605,24 +603,20 @@ SQL\_2b       & 63.0198                           \\ \hline
 \end{table}
 
 \selectlanguage{greek}
-Από τα δεδομένα και το \selectlanguage{english}text plan \selectlanguage{greek}που πήραμε για τα \selectlanguage{english}queries \selectlanguage{greek}μέσω της εντολής \selectlanguage{english}\texttt{.explain()}\selectlanguage{greek} (χρησιμοποιείται ως) στο μέρος του \selectlanguage{english}join \selectlanguage{greek}που χρησιμοποιούμε, εξάγουμε τα παρακάτω συμπεράσματα: 
+Από τα δεδομένα και το \selectlanguage{english}text plan \selectlanguage{greek}που πήραμε για τα \selectlanguage{english}queries \selectlanguage{greek}μέσω της εντολής \selectlanguage{english}\texttt{.explain()}\selectlanguage{greek} (χρησιμποιείται ως) στο μέρος του \selectlanguage{english}join \selectlanguage{greek}που χρησιμοποιούμε, εξάγουμε τα παρακάτω συμπεράσματα: 
 \begin{itemize}
-    \item   Για τα απλά \selectlanguage{english}joins \selectlanguage{greek}παρατηρούμε ότι η πιο αποδοτική στρατηγική είναι το \selectlanguage{english} "broadcast". \selectlanguage{greek}Για μεγάλα \selectlanguage{english} DataFrames \selectlanguage{greek} η επίδοση μειώνεται καθώς δεν μπορεί να κατανεμηθεί όμοια το φορτίο στους \selectlanguage{english} executors \selectlanguage{greek} και πολλές εκτελέσεις τείνουν να "κολλάνε" σε έναν \selectlanguage{english} worker \selectlanguage{greek} με τους υπόλοιπους να περιμένουν απάντηση από αυτόν. 
+    \item   Για τα απλά \selectlanguage{english}joins \selectlanguage{greek}παρατηρούμε ότι η πιο αποδοτική στρατηγική είναι το \selectlanguage{english} "broadcast". \selectlanguage{greek}Για μεγάλα \selectlanguage{english} DataFrames \selectlanguage{greek} η επίδοση μειώνεται καθώς δεν μπορεί να κατανεμηθεί όμοια το φορτίο στους \selectlanguage{english} executors \selectlanguage{greek} και πολλές εκτελέσεις τείνουν να "κολλανε" σε έναν \selectlanguage{english} worker \selectlanguage{greek} με τους υπόλοιπους να περιμένουν απάντηση από αυτόν. 
 
-    \item   Όσον αφορά την χρήση \selectlanguage{english} "cross-join" \selectlanguage{greek} μπορούμε να συμπεράνουμε ότι είναι μία αρκετά κοστοβόρα διαδικασία και δεν συνίσταται για συνδυασμούς μεγάλων όγκων δεδομένων. Στην περίπτωση που χρησιμοποιήθηκε τα δεδομένα έχουν ήδη φιλτραριστεί και έχουν περιορισθεί σε $100-300$ χιλιάδες γραμμές το πολύ. Παρόλα αυτά η χρήση του \selectlanguage{english} broadcast join \selectlanguage{greek} φαίνεται να είναι η πιο αποδοτική σε κάθε περίπτωση, που θέλουμε να αντλήσουμε πληροφορίες από μικρότερο \selectlanguage{english} DataFrame. 
+    \item   Όσον αφορά την χρήση \selectlanguage{english} "cross-join" \selectlanguage{greek} μπορούμε να συμπεράνουμε ότι είναι μία αρκετά κοστοβόρα διαδικασία και δεν συνίσταται για συνδυασμούς μεγάλων όγκων δεδομένων. Στην περίπτωση που χρησιμοποιήθηκε τα δεδομένα έχουν ήδη φιλτραριστεί και έχουν περιορισθεί σε $100-300$ χιλιάδες γραμμές το πολύ. Παρόλα αυτά η χρήση του \selectlanguage{english} broadcast join \selectlanguage{greek} φαίνεται να είναι η πιο αποδοτική σε κάθε περίπτωση, που θέλουμε να αντλήσουμε πληροφορίες απο μικρότερο \selectlanguage{english} DataFrame. 
 \end{itemize}
 
-\selectlanguage{greek}
-\section{Επίλογος}
-\label{sec:conclusion}
-Σε αυτή την εργασία, εξερευνήσαμε ενδελελεχώς μεγάλο μέρος της διαχείρισης μεγάλλων όγκων δεδομένων, της μετατροπής και της παρουσίασής τους με την βοήθεια του \selectlanguage{english}Apache Spark, \selectlanguage{greek}παρουσιάζοντας μια λεπτομερή ανάλυση μέσω διαφόρων μεθοδολογιών. Η συνολική μελέτη και ενασχόληση παρά ορισμένες τεχνικές δυσκολίες που αντιμετωπίσθηκαν κατά την πορεία, δείχνει την χρησιμότητα, τις δυνατότητες και την προοπτική του \selectlanguage{english} Framework,\selectlanguage{greek} κάνοντας πολύ πιο κατανοητό και ενδιαφέρον το συνολικό \selectlanguage{english} concept \selectlanguage{greek} του \selectlanguage{english} project.
 
 
-\clearpage
+
 \selectlanguage{greek}
-\section{Παράρτημα}
+\section*{Παράρτημα}
 \label{sec:appendix}
-\subsection{Παράρτημα Α - Kώδικας Boηθητικών συναρτήσεων}
+\subsection*{Παράρτημα Α - Kώδικας Boηθητικών συναρτήσεων}
 \label{subsec:apend_A}
 Στο παράρτημα αυτό παρατίθεται κώδικας και επεξήγηση του σε σημεία που θεωρούμε οτι χρήζουν περαιτέρω ανάλυσης. 
 \selectlanguage{english}
@@ -674,13 +668,13 @@ get_distance_udf = udf(get_distance, FloatType())
 get_day_segment_udf = udf(get_day_segment, StringType())
 \end{lstlisting}
 \selectlanguage{greek}
-Όσον αφορά το \selectlanguage{english}\texttt{udfs.py} script \selectlanguage{greek}που φαίνεται στο παραπάνω απόκομμα 1, παρουσιάζονται συγκεντρωτικά οι \selectlanguage{english}\texttt{User Defined Function} \selectlanguage{greek} που χρησιμοποιήσαμε και κάναμε \selectlanguage{english} register \selectlanguage{greek} στο σύστημα για τον υπολογισμό των αποστάσεων (Ζητούμενο 6 - ~\ref{subsec:Z6}), ο διαχωρισμός του μέρους της μέρας (Ζητούμενο 4 - ~\ref{subsec:Z4}) και η αντιστοίχηση του χαρακτήρα προέλευσης με το κανονικό όνομα (Ζητούμενο 5 - \ref{subsec:Z5}).
+Όσον αφορά το \selectlanguage{english}\texttt{udfs.py} script \selectlanguage{greek}που φαίνεται στο παραπάνω απόκομμα 1, παρουσιάζονται συγκεντρωτικά οι \selectlanguage{english}\texttt{User Defined Function} \selectlanguage{greek} που χρησιμοποιήσαμε και κάναμε \selectlanguage{english} regsiter \selectlanguage{greek} στο σύστημα για τον υπολογισμό των αποστάσεων (Ζητούμενο 6~\ref{subsec:Z6}), ο διαχωρισμός του μέρους της μέρας (Ζητούμενο 4~\ref{subsec:Z4}) και η αντιστοίχηση του χαρακτήρα προέλευσης με το κανονικό όνομα (Ζητούμενο 5~\ref{subsec:Z5}).
 
 
-Συγκεκριμένα για την συνάρτηση υπολογισμού της απόστασης \selectlanguage{english} \texttt{get\_distance} \selectlanguage{greek} χρησιμοποιήσαμε διαφορετική υλοποίηση από την προτεινόμενη (\selectlanguage{english} geopy library). \selectlanguage{greek}Μετατρέπουμε τις συντεταγμένες σε \selectlanguage{english} radians \selectlanguage{greek},υπολογίζουμε τις διαφορές των συντεταγμένων και χρησιμοποιούμε τον τύπο \selectlanguage{english} haversine \selectlanguage{greek} για τον υπολογισμό της γωνιακής απόστασης \selectlanguage{english}\textbf{c}\selectlanguage{greek} που πολλαπλασιάζουμε με την ακτίνα της Γης σε χιλιόμετρα.
+Σεγκεκριμένα για την συνάρτηση υπολογισμού της απόστασης \selectlanguage{english} \texttt{get\_distance} \selectlanguage{greek} χρησιμοποίησαμε διαφορετική υλοποίηση από την προτεινόμενη (\selectlanguage{english} geopy library). \selectlanguage{greek}Μετατρέπουμε τις συντεταγμένες σε \selectlanguage{english} radians \selectlanguage{greek},υπολογίζουμε τις διαφορές των συντεταγμένων και χρησιμοποιούμε τον τύπο \selectlanguage{english} haversine \selectlanguage{greek} για τον υπολογισμό της γωνιακής απόστασης \selectlanguage{english}\textbf{c}\selectlanguage{greek} που πολλαπλασιαζουμε με την ακτίνα της Γης σε χιλιόμετρα.
 
 
-\subsection{\selectlanguage{greek}Παράρτημα B - Κώδικας Ερωτημάτων}
+\subsection*{Παράρτημα B - Kώδικας Ερωτημάτων}
 \label{subsec:apend_B}
 \selectlanguage{english}
 \begin{lstlisting}[language=Python, caption={Query 3 - SQL}]
@@ -757,7 +751,7 @@ spark.sql("""
 
 
 \selectlanguage{greek}
-Για το απόκομμα 2 που περιλαμβάνει την υλοποίηση του \selectlanguage{english}Query 3 (SQL)~\ref{subsec:Z5} \selectlanguage{greek}παρατίθεται η επεξήγηση σε βήματα: 
+Για το απόκομμα 2 που περιλαμβάνει την υλοποίηση του \selectlanguage{english}Query 3 (SQL)~\ref{subsec:Z5} \selectlanguage{greek}παρατίθεται η επεξήση σε βήματα: 
 \begin{itemize}
     \item   Αρχικά φιλτράρουμε τις καταγραφές μόνο από το 2015 με έγκυρες συντεταγμένες
     \item   Από αυτό κάνουμε \selectlanguage{english} join \selectlanguage{greek} με τις συντεταγμένες του \selectlanguage{english}geocoding \selectlanguage{greek} για να κρατήσουμε το \selectlanguage{english} Zip Code. 
@@ -813,11 +807,11 @@ spark.sql("""
 \selectlanguage{greek}
 \begin{itemize}
     \item   Αρχικά φιλτράρουμε από το \selectlanguage{english} DataFrame\selectlanguage{greek} μόνο τις χρήσιμες στήλες, καθώς οι μετατροπές που θα κάνουμε παρακάτω θα είναι κοστοβόρες και χρονοβόρες, και κρατάμε μόνο τις καταγραφές με κωδικό όπλου που αρχίζει με $1$.
-    \item   Στη συνέχεια εκτελούμε \selectlanguage{english} cross join \selectlanguage{greek} των καταγραφών που έχουμε με τις γεωγραφικές συντεταγμένες του \selectlanguage{english} DataFrame LAPD. 
+    \item   Στη συνέχεια εκτελούμε \selectlanguage{english} cross join \selectlanguage{greek} των καταγραφών που έχουμε με τις γεωγραφιές συντεταγμένες του \selectlanguage{english} DataFrame LAPD. 
     \item   \selectlanguage{greek}Στο επόμενο βήμα χρησιμοποιούμε την δική μας συνάρτηση \selectlanguage{english}\texttt{get\_distance} \selectlanguage{greek} για τον υπολογισμό κάθε απόστασης.
-    \item   Με το \selectlanguage{english}\texttt{ROW\_NUMBER()} \selectlanguage{greek} αποδίδουμε ένα \selectlanguage{english}"rank" \selectlanguage{greek}για κάθε τμήμα και κάθε για κάθε έγκλημα "σορταρισμένο" βάσει της απόστασης. Έτσι βρίσκουμε το πλησιέστερο Α.Τ. στο έγκλημα. 
+    \item   Με το \selectlanguage{english}\texttt{ROW\_NUMBER()} \selectlanguage{greek} αποδίδουμε ένα \selectlanguage{english}"rank" \selectlanguage{greek}για κάθε τμήμα και κάθε για κάθε έγκλημα σορταρισμένο βάσει της απόστασης. Έτσι βρίσκουμε το πλησιέστερο Α.Τ. στο έγκλημα. 
     \item   Από αυτά κρατάμε μόνο όσες καταγραφές έχουν \selectlanguage{english}"Rank==1"\selectlanguage{greek}, δηλαδή είναι οι καταγραφές με την απόσταση του πλησιέστερου τμήματος.
-    \item   Τέλος, παρουσιάζω τα εγκλήματα ανά έτος και τον αριθμό των καταγραφών, έχοντας βρει την μέση απόσταση για κάθε έγκλημα της συγκεκριμένης χρονιάς. 
+    \item   Τέλος, παρουσιάζω τα εγκλήματα ανά έτος και τον αριθμό των καταγραφών, έχοντας βρει την μέση απόσταση για κάθε έγκλημα της συγκεκτριμένης χρονιάς. 
 \end{itemize}
 
 \selectlanguage{english}
@@ -846,10 +840,10 @@ q4_2a.show(q4_2a.count())
 
 
 \selectlanguage{greek}
-Για το τελευταίο απόκομμα (4), που είναι υλοποίηση σε \selectlanguage{english} Python - Spark DataFrame API,\selectlanguage{greek} σχολιάζουμε τις ουσιαστικές αλλαγές σε σχέση με την προηγούμενη υλοποίηση σε \selectlanguage{english} SQL API. \selectlanguage{greek}Στο κομμάτι αυτό, συνεπώς, θα σχολιάσουμε το φιλτράρισμα των κοντινότερων αποστάσεων. 
+Για το τελευταίο απόκκομα (4), που είναι υλοποίηση σε \selectlanguage{english} Python - Spark DataFrame API,\selectlanguage{greek} σχολιάζουμε τις ουσιαστικές αλλαγές σε σχέση με την προηγούμενη υλοποίηση σε \selectlanguage{english} SQL API. \selectlanguage{greek}Στο κομμάτι αυτό, συνεπώς, θα σχολιάσουμε το φιλτράρισμα των κοντινότερων αποστάσεων. 
 
 
-Μετά το \selectlanguage{english} cross join \selectlanguage{greek} χρησιμποιούμε το \selectlanguage{english}\texttt{Window.partitionBy()} \selectlanguage{greek} που χωρίζει το \selectlanguage{english} DataFrame view \selectlanguage{greek} στο οποίο εργαζόμαστε, σε ομάδες ανάλογα με το \selectlanguage{english} unique log identifier "DR\_NO" \selectlanguage{greek} που αντιστοιχεί σε κάθε καταγεγραμμένο έγκλημα. Έπειτα, προσθέτουμε την στήλη \selectlanguage{english}"rank" \selectlanguage{greek} και όπως πριν κρατάμε τις καταγραφές με "βαθμό" ίσο με ένα, δηλαδή την μικρότερη απόσταση. Τέλος, ομαδοποιούμε και παρουσιάζουμε όπως και στην προηγούμενη υλοποίηση. 
+Μετά το \selectlanguage{english} cross join \selectlanguage{greek} χρησιμποιούμε το \selectlanguage{english}\texttt{Window.partitionBy()} \selectlanguage{greek} που χωρίζει το \selectlanguage{english} DataFrame view \selectlanguage{greek} στο οποίο εγραζόμαστε, σε ομάδες ανάλογα με το \selectlanguage{english} unique log identifier "DR\_NO" \selectlanguage{greek} που αντιστοιχεί σε κάθε καταγεγραμμένο έγκλημα. Έπειτα, προσθέτουμε την στήλη \selectlanguage{english}"rank" \selectlanguage{greek} και όπως πριν κρατάμε τις καταγραφές με "βαθμό" ίσο με ένα, δηλαδή την μικρότερη απόσταση. Τέλος, ομαδοποιούμε και παρουσιάζουμε όπως και στην προηγούμενη υλοποίηση. 
 
 
 Για τις υπόλοιπες υλοποιήσεις δεν παρατίθεται κώδικας ή αποκόμματα εντός της αναφοράς, καθώς την καθιστά υπερβολικά εκτενή. Περιγράψαμε αυτές που θεωρήσαμε ότι ήταν σημαντικότερες ή άξιες αναφοράς. Για αναλυτικότερη περιήγηση στις υλοποιήσεις, ο κώδικας υπάρχει στο \selectlanguage{english}Github repository\footnote{https://github.com/georgebaris/advanced\_db\_project}.

@@ -19,17 +19,17 @@ _January 2024_
 ## Repo Description
 > Source code can be found in the ["source"](https://github.com/georgebaris/advanced_db_project/tree/main/source) folder. Contains Dataframe Creation and Query Execution files.
 
-### 1. Installation of Spark on Virtual Machines or locally by following the steps in the [Spark Setup Guide](https://colab.research.google.com/drive/1pjf3Q6T-Ak2gXzbgoPpvMdfOHd1GqHZG?usp=sharing)
+1. Installation of Spark on Virtual Machines or locally by following the steps in the [Spark Setup Guide](https://colab.research.google.com/drive/1pjf3Q6T-Ak2gXzbgoPpvMdfOHd1GqHZG?usp=sharing)
 
-### 2. Create a folder where all the `.csv` files will be placed. 
-### 3. The files required for the execution of the exercise can be found at the following links:
+2. Create a folder where all the `.csv` files will be placed. 
+3. The files required for the execution of the exercise can be found at the following links:
    - [Crime Data from 2010 to 2019](https://catalog.data.gov/dataset/crime-data-from-2010-to-2019)
    - [Crime Data from 2020 to Present](https://catalog.data.gov/dataset/crime-data-from-2020-to-present)
    - [Income Data 2015](http://www.laalmanac.com/employment/em12c_2015.php)
    - [DBLab NTUA Data Files](http://www.dblab.ece.ntua.gr/files/classes/data.tar.gz)
 
-### 4. Add these files to the dfs with the command: `hdfs dfs -put "FILENAME".csv hdfs:///user/user/`
-### 5. Before executing the queries, the following commands must be run to create the necessary `.parquet` files:
+4. Add these files to the dfs with the command: `hdfs dfs -put "FILENAME".csv hdfs:///user/user/`
+5. Before executing the queries, the following commands must be run to create the necessary .parquet files:
 
 ```shell
 spark-submit create_dataframe.py
@@ -43,7 +43,7 @@ chmod +x dataframes_run.sh
 ./dataframes_run.sh
 ```
 
-### 6. The queries are executed with the following commands:
+6. The queries are executed with the following commands:
 ```shell
 spark-submit --num-executors N queryXAPI.py
 ```
@@ -87,14 +87,11 @@ where **N** is the number of query chosen (1,2,3 or 4) and **X** is the case of 
 > **Note**: If you are having _trouble_ with the _execution_ of queries, having the following _error raised_: `Error: moodule udfs not found`, know the following:
 > the queries are implemented using _[User Defined Functions](https://sparkbyexamples.com/pyspark/pyspark-udf-user-defined-function/)_ which have to be _registered_ to the hdfs before execution. So you have to either **register** the module to your system, or **uncommnet** the segments of the code mentioned in each query file and run the queries again.
 
-### 7. The results of the queries are printed as DataFrame views, and the execution time is printed in the terminal.
-
-### 8. For further investigation of efficiency of joins, use `hint("joinType")` or `explain()` to print the join strategy.
-
-
+7. The results of the queries are printed as DataFrame views, and the execution time is printed in the terminal.
+8. For further investigation of efficiency of joins, use `hint("joinType")` or `explain()` to print the join strategy.
 ---
 ## Project Report Description
-The report can be found in the ["report"](https://github.com/georgebaris/advanced_db_project/tree/main/report) folder. Contains the report in pdf format and the latex files. 
+The report can be found in the ["report"]() folder. Contains the report in pdf format and the latex files. 
 
 In the report you can find:
 - The motivation and the objective of this project 

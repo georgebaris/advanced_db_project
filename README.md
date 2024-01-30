@@ -6,8 +6,8 @@ This repository is for the semester project of the course "Advanced Topics in Da
 
 ---
 **Contributors**:
-- Georgios Baris - / [georgebaris](https://github.com/georgebaris)
-- Ioannis Konstantinos Chatzis - / [jcchatzis](https://github.com/jcchatzis)
+- Georgios Baris / [georgebaris](https://github.com/georgebaris)
+- Ioannis Konstantinos Chatzis / [jcchatzis](https://github.com/jcchatzis)
 ---
 
 **School of Electrical and Computer Engineering**  
@@ -91,7 +91,7 @@ where **N** is the number of query chosen (1,2,3 or 4) and **X** is the case of 
 8. For further investigation of efficiency of joins, use `hint("joinType")` or `explain()` to print the join strategy.
 ---
 ## Project Report Description
-The report can be found in the ["report"]() folder. Contains the report in pdf format and the latex files. 
+The report can be found in the ["report"](https://github.com/georgebaris/advanced_db_project/tree/main/report) folder. Contains the report in pdf format and the latex files. 
 
 In the report you can find:
 - The motivation and the objective of this project 

@@ -3,6 +3,11 @@
 This repository is for the semester project of the course "Advanced Topics in Database Systems" of 9<sup>th</sup>
  semester.
 
+---
+
+**Project Summary**
+
+This semester project leverages Apache Spark and Hadoop to process and analyze large-scale crime and socioeconomic datasets from Los Angeles (2010–2023). It showcases distributed data processing, query optimization, and spatial analysis using Spark DataFrame, SQL, and RDD APIs. All code, setup instructions, and results are provided in this repo.
 
 ---
 **Contributors**:
